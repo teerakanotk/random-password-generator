@@ -1,6 +1,12 @@
 "use client";
 
 import {
+  inputFields,
+  checkboxOptions,
+  saveSettingsOption,
+} from "@/utils/config";
+
+import {
   Form,
   FormControl,
   FormField,
@@ -8,12 +14,8 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  inputFields,
-  checkboxOptions,
-  saveSettingsOption,
-} from "@/utils/config";
 import { ButtonGroup } from "@/components/button-group";
 
 export function PasswordForm({
@@ -31,7 +33,7 @@ export function PasswordForm({
         onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col gap-4"
       >
-        <div className="grid md:grid-cols-2 gap-4">
+        <div className="grid gap-4">
           {inputFields.map((field) => (
             <FormField
               key={field.id}
@@ -41,7 +43,7 @@ export function PasswordForm({
                 <FormItem>
                   <FormLabel>{field.label}</FormLabel>
                   <FormControl>
-                    <input
+                    <Input
                       type={field.type}
                       min={field.min}
                       max={field.max}
@@ -49,7 +51,6 @@ export function PasswordForm({
                       onChange={(e) =>
                         rhfField.onChange(Number(e.target.value))
                       }
-                      className="w-full p-2 border rounded"
                     />
                   </FormControl>
                   <FormMessage />
@@ -83,13 +84,13 @@ export function PasswordForm({
                         className="cursor-pointer"
                       />
                     </FormControl>
-                    <FormLabel className="text-sm font-normal">
+                    <FormLabel className="font-normal">
                       {option.label}
                     </FormLabel>
+                    <FormMessage />
                   </FormItem>
                 ))}
               </div>
-              <FormMessage />
             </FormItem>
           )}
         />
@@ -113,6 +114,8 @@ export function PasswordForm({
             </FormItem>
           )}
         />
+
+        <FormMessage />
 
         <ButtonGroup
           passwords={passwords}

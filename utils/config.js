@@ -4,8 +4,8 @@ export const inputFields = [
     label: "Password Length",
     type: "number",
     defaultValue: 8,
-    min: 6,
-    max: 64,
+    min: 4,
+    max: 32,
   },
   {
     id: "quantity",

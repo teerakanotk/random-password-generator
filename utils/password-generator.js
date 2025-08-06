@@ -55,12 +55,7 @@ export function generatePassword(options, length) {
   // Step 2: Fill the rest of the password
   const remainingLength = length - passwordChars.length;
 
-  if (noDuplicated && new Set(allChars).size < length) {
-    console.warn(
-      "Not enough unique characters to generate password without duplicates."
-    );
-    return "";
-  }
+  if (noDuplicated && new Set(allChars).size < length) return "";
 
   for (let i = 0; i < remainingLength; i++) {
     let char;
@@ -80,14 +75,12 @@ export function generatePassword(options, length) {
     if (includeUpper) letters.push(...upper);
     if (includeLower) letters.push(...lower);
 
-    if (letters.length === 0) {
-      console.warn("beginLetter selected but no letters included.");
-      return "";
-    }
+    if (letters.length === 0) return "";
 
     const letterIndex = passwordChars.findIndex((char) =>
       letters.includes(char)
     );
+
     if (letterIndex === -1) {
       const forcedLetter = letters[Math.floor(Math.random() * letters.length)];
       if (noDuplicated) {

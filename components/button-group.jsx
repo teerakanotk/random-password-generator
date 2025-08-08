@@ -10,7 +10,7 @@ export function ButtonGroup({
   copyToClipboard,
 }) {
   return (
-    <div className="flex items-center justify-center space-x-2">
+    <div className="grid grid-cols-3 gap-2">
       <Button type="submit" className="cursor-pointer">
         Generate
       </Button>

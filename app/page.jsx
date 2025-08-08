@@ -4,17 +4,17 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-
 import { generatePassword } from "@/utils/password-generator";
-
-import { Card } from "@/components/ui/card";
 import { PasswordForm } from "@/components/password-form";
 import { PasswordDisplay } from "@/components/password-display";
 
 const STORAGE_KEY = "passwordGeneratorSettings";
 
 const FormSchema = z.object({
-  length: z.number().min(4).max(32),
+  length: z
+    .number()
+    .min(4, "Length must be between 4 and 32 characters")
+    .max(32, "Length must be between 4 and 32 characters"),
   quantity: z.number().min(1).max(1000),
   options: z.array(z.string()).min(1, "You must select at least one option"),
   saveSettings: z.boolean().optional(),
@@ -89,13 +89,13 @@ export default function HomePage() {
   if (!mounted) return null; // Prevent rendering until mounted
 
   return (
-    <div className="min-h-screen p-8 md:px-92">
-      <Card className="p-6">
-        <h1 className="flex items-center justify-center text-2xl font-bold mb-8">
+    <div className="max-w-lg mx-auto p-4">
+      <div className="pt-12">
+        <h1 className="flex items-center justify-center text-2xl font-extrabold mb-8">
           Random Password Generator
         </h1>
 
-        <div className="h-full grid gap-4">
+        <div className="grid gap-4">
           <PasswordForm
             form={form}
             onSubmit={onSubmit}
@@ -112,7 +112,7 @@ export default function HomePage() {
             copiedAll={copiedAll}
           />
         </div>
-      </Card>
+      </div>
     </div>
   );
 }

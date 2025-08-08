@@ -6,7 +6,7 @@ export function PasswordDisplay({ passwords, copiedIndex, copiedAll }) {
   if (passwords.length === 0) return null; // Hide entire component if no passwords
 
   return (
-    <ScrollArea className="max-h-[40vh] border rounded-md overflow-auto">
+    <ScrollArea className="max-h-[145px] xl:max-h-[50vh] border rounded-md overflow-auto">
       <div className="p-2">
         {passwords.map((pwd, idx) => (
           <p key={idx} className="p-1">
